@@ -4,7 +4,7 @@ import scipy.misc
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
-# test
+# test2
 Client = discord.Client()
 bot_prefix= "!"
 client = commands.Bot(command_prefix=bot_prefix)
