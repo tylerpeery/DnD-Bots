@@ -4,7 +4,7 @@ import scipy.misc
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
-# test2
+
 Client = discord.Client()
 bot_prefix= "!"
 client = commands.Bot(command_prefix=bot_prefix)
@@ -332,7 +332,7 @@ async def on_message(message):
 
     if message.content.startswith('!batboys'):
         await client.send_file(message.channel, "E:\Pictures-H\Batboys.png")
-test 12
+
     # create a random dungeon image, save on desktop, print
     # if message.content.startswith('!test'):
     #     w, h = 600, 800
