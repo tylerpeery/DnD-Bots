@@ -348,4 +348,4 @@ async def on_message(message):
     # #     msg = await client.wait_for_message(author=message.author, content='hello')
     # #     await client.send_message(message.channel, 'Hello.')
 
-client.run("MzY2NDIxNDQ2MjA3MjA5NDgy.DLsoFQ.QXl3RySPD0qQ5oM1zB7dNPVOm6w")
+client.run("MzY2NDIxNDQ2MjA3MjA5NDgy.DL1_HQ.DRoaX95obL9snahUqQGHQ12PupA")
