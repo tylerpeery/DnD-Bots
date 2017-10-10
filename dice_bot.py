@@ -280,58 +280,26 @@ async def on_message(message):
                     if magicText == 'A0':  # get starting line of respective list
                         magicRoll = np.random.randint(1, 7, 1)
                         num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
-                        with open("Magic_Item_Tables") as search:
-                            for line in search:
-                                if mstart > 0 and line == '\n':
-                                    mend = i
-                                    break
-                                i += 1
-                                line = line.rstrip()  # remove '\n' at end of line
-                                if num == line: mstart = i  # begin looking at line n+1
                     elif magicText == 'B0':
                         magicRoll = np.random.randint(1, 5, 1)
                         num, i, mstart = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
-                        with open("Magic_Item_Tables") as search:
-                            for line in search:
-                                if mstart > 0 and line == '\n':
-                                    mend = i
-                                    break
-                                i += 1
-                                line = line.rstrip()  # remove '\n' at end of line
-                                if num == line: mstart = i
                     elif magicText == 'C0':
                         magicRoll = np.random.randint(1, 5, 1)
                         num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
-                        with open("Magic_Item_Tables") as search:
-                            for line in search:
-                                if mstart > 0 and line == '\n':
-                                    mend = i
-                                    break
-                                i += 1
-                                line = line.rstrip()  # remove '\n' at end of line
-                                if num == line: mstart = i
                     elif magicText == 'F0':
                         magicRoll = np.random.randint(1, 5, 1)
                         num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
-                        with open("Magic_Item_Tables") as search:
-                            for line in search:
-                                if mstart > 0 and line == '\n':
-                                    mend = i
-                                    break
-                                i += 1
-                                line = line.rstrip()  # remove '\n' at end of line
-                                if num == line: mstart = i
                     elif magicText == 'G0':
                         magicRoll = np.random.randint(1, 2, 1)
                         num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
-                        with open("Magic_Item_Tables") as search:
-                            for line in search:
-                                if mstart > 0 and line == '\n':
-                                    mend = i
-                                    break
-                                i += 1
-                                line = line.rstrip()  # remove '\n' at end of line
-                                if num == line: mstart = i
+                    with open("Magic_Item_Tables") as search:
+                        for line in search:
+                            if mstart > 0 and line == '\n':
+                                mend = i
+                                break
+                            i += 1
+                            line = line.rstrip()  # remove '\n' at end of line
+                            if num == line: mstart = i
 
             elif int(level) <= 10:
                 if roll <= 30:
