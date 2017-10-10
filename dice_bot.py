@@ -318,11 +318,11 @@ async def on_message(message):
             bigPrint += '= {} GP'.format(np.sum(gems50n)*50)
         try:
             magicText
-        except NameError:  # if rolls doesn't exist yet
+        except NameError:  # if magicText doesn't exist yet
             bigPrint += '\r Sorry, no magic items this time :('
         else:
             bigPrint += '\r And... ' + magicItems[magicText] + '!'
-        await client.send_file(message.channel, "E:\Pictures-H\coins.png")
+        await client.send_file(message.channel, "E:\Pictures-H\hoard.png")
         await client.send_message(message.channel, bigPrint)
 
     if message.content.startswith('!batboys'):
