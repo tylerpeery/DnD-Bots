@@ -1,0 +1,79 @@
+MAGIC ITEM TABLE A
+dlOO Magic Item
+01-50 Potion of healing
+51-60 Spell scroll (cantrip)
+61-70 Potion of climbing
+71-90 Spell scroll (1st level)
+91-94 Spell scroll (2nd leve l)
+95-98 Potion of greater healing
+99 Bag of holding
+00 Driftglobe
+
+MAGIC ITEM TABLE B
+dlOO Magic Item
+01-15 Potion of greater healing
+16-22 Potion of fire breath
+23-29 Potion of resistance
+30-34 Ammunition , +1
+35-39 Potion of animal friendship
+40-44 Potion of hill giant strength
+45-49 Potion of growth
+50-54 Potion of water breathing
+55-59 Spell scroll (2nd level)
+60-64 Spell scroll (3rd leve l)
+65-67 Bag of holding
+68-70 Keoghtom's ointment
+71-73 Oil of slipperiness
+74-75 Dust of disappearance
+76-77 Dust ·of dryness
+78-79 Dust of sneezing and choking
+80-81 Elemental gem
+82-83 Philter of love
+84 Alchemy jug
+85 Cap of water breathing
+86 Cloak of the manta ray
+87 Driftglobe
+88 Goggles of night
+89 Helm of comprehending languages
+90 Immovable rod
+91 Lantern of revealing
+92 Mariner's armor
+93 Mithral armor
+94 Potion of poison
+95 Ring of swimming
+96 Robe of useful items
+97 Rope of climbing
+98 Saddle of the cavalier
+99 Wand of magic detection
+00 Wand of secrets
+
+MAGIC ITEM TABLE c
+dlOO Magic Item
+01-15 Potion of superior healing
+16-22 Spell scroll (4th level)
+23-27 Ammunition, +2
+28-32 Potio n of clairvoyance
+33-37 Potion of diminution
+38-42 Potion of gaseous form
+43-47 Potion of frost giant strength
+48-52 Potion of stone giant strength
+53-57 Potion of heroism
+58-62 Potion of invu lnerabil ity
+63-67 Potion of mind reading
+68-72 Spell scroll (5th level)
+73-75 Elixir of health
+76-78 Oil of etherealness
+79-81 Potion of fire giant strength
+82-84 Quaal's feather token
+85-87 Scroll of protection
+88-89 Bag of beans
+90-91 Bead of force
+92 Chime of opening
+93 Decanter of endless water
+94 Eyes of minute seeing
+95 Folding boat
+96 Heward's handy haversack
+97 Horseshoes of speed
+98 Necklace of fireballs
+99 Periapt of health
+00 Sending stones
