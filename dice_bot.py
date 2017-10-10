@@ -173,9 +173,9 @@ async def on_message(message):
                  'Pair of engraved bone dice', 'Small mirror set in painted wooden frame', \
                  'Embroidered silk handkerchief', 'Gold locket with a painted portrait inside']
         art25n = np.zeros(len(art25), int)
-        magicItems = {'A': 'Roll 1d6 times on Magic Item Table A', 'B': 'Roll 1d4 times on Magic Item Table B', \
-                 'C': 'Roll 1d4 times on Magic Item Table C', 'F': 'Roll 1d4 times on Magic Item Table F', \
-                 'G': 'Roll once on Magic Item Table G'}
+        magicItems = {'A0': 'Roll 1d6 times on Magic Item Table A', 'B0': 'Roll 1d4 times on Magic Item Table B', \
+                 'C0': 'Roll 1d4 times on Magic Item Table C', 'F0': 'Roll 1d4 times on Magic Item Table F', \
+                 'G0': 'Roll once on Magic Item Table G'}
         rollCheck = message.content[7:]
         numArgs = rollCheck.count(' ') + 1
         if numArgs == 1:
@@ -206,70 +206,132 @@ async def on_message(message):
                     for x in range(0, items):
                         gems50n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 44:
-                    magicText = 'A'
+                    magicText = 'A0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems10n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 52:
-                    magicText = 'A'
+                    magicText = 'A0'
                     items = np.sum(np.random.randint(1, 5, 2))
                     for x in range(0, items):
                         art25n[np.random.randint(0, 10, 1)] += 1
                 elif roll <= 60:
-                    magicText = 'A'
+                    magicText = 'A0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems50n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 65:
-                    magicText = 'B'
+                    magicText = 'B0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems10n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 70:
-                    magicText = 'B'
+                    magicText = 'B0'
                     items = np.sum(np.random.randint(1, 5, 2))
                     for x in range(0, items):
                         art25n[np.random.randint(0, 10, 1)] += 1
                 elif roll <= 75:
-                    magicText = 'B'
+                    magicText = 'B0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems50n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 78:
-                    magicText = 'C'
+                    magicText = 'C0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems10n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 80:
-                    magicText = 'C'
+                    magicText = 'C0'
                     items = np.sum(np.random.randint(1, 5, 2))
                     for x in range(0, items):
                         art25n[np.random.randint(0, 10, 1)] += 1
                 elif roll <= 85:
-                    magicText = 'C'
+                    magicText = 'C0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems50n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 92:
-                    magicText = 'F'
+                    magicText = 'F0'
                     items = np.sum(np.random.randint(1, 5, 2))
                     for x in range(0, items):
                         art25n[np.random.randint(0, 10, 1)] += 1
                 elif roll <= 97:
-                    magicText = 'F'
+                    magicText = 'F0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems50n[np.random.randint(0, 12, 1)] += 1
                 elif roll <= 99:
-                    magicText = 'G'
+                    magicText = 'G0'
                     items = np.sum(np.random.randint(1, 5, 2))
                     for x in range(0, items):
                         art25n[np.random.randint(0, 10, 1)] += 1
                 else:  # 100
-                    magicText = 'G'
+                    magicText = 'G0'
                     items = np.sum(np.random.randint(1, 7, 2))
                     for x in range(0, items):
                         gems50n[np.random.randint(0, 12, 1)] += 1
+
+                #  Roll for magic items
+                try:
+                    magicText
+                except NameError:  # if magicText doesn't exist yet
+                    continue
+                else:
+                    if magicText == 'A0':  # get starting line of respective list
+                        magicRoll = np.random.randint(1, 7, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
+                        with open("Magic_Item_Tables") as search:
+                            for line in search:
+                                if mstart > 0 and line == '\n':
+                                    mend = i
+                                    break
+                                i += 1
+                                line = line.rstrip()  # remove '\n' at end of line
+                                if num == line: mstart = i  # begin looking at line n+1
+                    elif magicText == 'B0':
+                        magicRoll = np.random.randint(1, 5, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
+                        with open("Magic_Item_Tables") as search:
+                            for line in search:
+                                if mstart > 0 and line == '\n':
+                                    mend = i
+                                    break
+                                i += 1
+                                line = line.rstrip()  # remove '\n' at end of line
+                                if num == line: mstart = i
+                    elif magicText == 'C0':
+                        magicRoll = np.random.randint(1, 5, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
+                        with open("Magic_Item_Tables") as search:
+                            for line in search:
+                                if mstart > 0 and line == '\n':
+                                    mend = i
+                                    break
+                                i += 1
+                                line = line.rstrip()  # remove '\n' at end of line
+                                if num == line: mstart = i
+                    elif magicText == 'F0':
+                        magicRoll = np.random.randint(1, 5, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
+                        with open("Magic_Item_Tables") as search:
+                            for line in search:
+                                if mstart > 0 and line == '\n':
+                                    mend = i
+                                    break
+                                i += 1
+                                line = line.rstrip()  # remove '\n' at end of line
+                                if num == line: mstart = i
+                    elif magicText == 'G0':
+                        magicRoll = np.random.randint(1, 2, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
+                        with open("Magic_Item_Tables") as search:
+                            for line in search:
+                                if mstart > 0 and line == '\n':
+                                    mend = i
+                                    break
+                                i += 1
+                                line = line.rstrip()  # remove '\n' at end of line
+                                if num == line: mstart = i
 
             elif int(level) <= 10:
                 if roll <= 30:
@@ -286,6 +348,29 @@ async def on_message(message):
                 else:
                     coins['GP'] += np.sum(np.random.randint(1,7,2)) * 10
                     coins['PP'] += np.sum(np.random.randint(1,7,3))
+
+            #  Roll for magic items
+            try:
+                magicText
+            except NameError:  # if magicText doesn't exist yet
+                continue
+            else:
+                f = open('Magic_Item_Tables', 'r')
+                lines = f.readlines()[int(mstart+1):int(mend)]
+                f.close()
+                dieRange, magicItem, magicItemn = [0]*len(lines), [0]*len(lines), np.zeros(len(lines), int)
+                for x in range(0, len(lines)):
+                    lines[x] = lines[x].rstrip()
+                    dieRange[x], magicItem[x] = lines[x].split(' ', 1)
+                for x in range(0, int(magicRoll)):
+                    d100 = np.random.randint(1, 101, 1)
+                    for n in range(0, len(dieRange)):
+                        if '-' in dieRange[n]:
+                            first, second = dieRange[n].split('-')
+                            if d100 >= int(first) and d100 <= int(second):
+                                magicItemn[n] +=1
+                        elif d100 == int(dieRange[n]):
+                            magicItemn[n] +=1
 
         bigPrint = "BUM BA DUH BUUUH!: \r"
         if coins['CP'] > 0:
@@ -321,7 +406,12 @@ async def on_message(message):
         except NameError:  # if magicText doesn't exist yet
             bigPrint += '\r Sorry, no magic items this time :('
         else:
-            bigPrint += '\r And... ' + magicItems[magicText] + '!'
+            bigPrint += '\rAnd...!'
+            if np.sum(magicItemn) > 0:
+                bigPrint += '\r'
+                for x in range(0, len(magicItem)):
+                    if magicItemn[x] > 0:
+                        bigPrint += '{} {}(s)  '.format(magicItemn[x], magicItem[x])
         await client.send_file(message.channel, "E:\Pictures-H\hoard.png")
         await client.send_message(message.channel, bigPrint)
 
