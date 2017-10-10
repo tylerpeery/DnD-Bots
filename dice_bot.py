@@ -4,6 +4,7 @@ import scipy.misc
 from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
+import random
 
 Client = discord.Client()
 bot_prefix= "!"
@@ -31,9 +32,11 @@ async def on_ready():
 async def on_message(message):
     global rolls
     global charName
-    if message.content.startswith('!raid '):  # alias for !details
-        raidId = message.content[6:]
-        print(raidId)
+    if message.content.startswith('!hit'):  # alias for !details
+        charName = [message.author.display_name]
+        lines = open('Hit_Descriptors').read().splitlines()
+        myline = random.choice(lines)
+        await client.send_message(message.channel, '{} {}'.format(charName[0], myline))
 
     if message.content.startswith('!roll '):
         rollCheck = message.content[6:]
