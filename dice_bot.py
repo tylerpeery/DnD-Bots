@@ -406,7 +406,7 @@ async def on_message(message):
         except NameError:  # if magicText doesn't exist yet
             bigPrint += '\r Sorry, no magic items this time :('
         else:
-            bigPrint += '\rAnd...!'
+            bigPrint += '\r*And...!*'
             if np.sum(magicItemn) > 0:
                 bigPrint += '\r'
                 for x in range(0, len(magicItem)):
