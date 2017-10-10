@@ -20,14 +20,6 @@ async def on_ready():
     print("Name: {}".format(client.user.name))
     print("ID: {}".format(client.user.id))
 
-# @client.command(pass_context=True)
-# async def ping(ctx):
-#     await client.say("Pong!")
-#
-# @client.command(pass_context=True)
-# async def test(ctx):
-#     await client.say("Got it!")
-
 @client.event
 async def on_message(message):
     global rolls
