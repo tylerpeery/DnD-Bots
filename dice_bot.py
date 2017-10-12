@@ -32,9 +32,9 @@ async def on_ready():
         return None
     generalChannel = get_channel(client.get_all_channels(), 'general')
 
-    if datetime.datetime.today().weekday() == 3:
-        await client.send_file(generalChannel, "E:\Pictures-H\gamenight.png")
-        await client.send_message(generalChannel, 'It\'s game night baby!)
+    if datetime.datetime.today().weekday() == 2:
+        await client.send_file(generalChannel, "imgs\gamenight.png")
+        await client.send_message(generalChannel, 'It\'s game night baby!')
 
 
 @client.event
@@ -174,7 +174,7 @@ async def on_message(message):
             bigPrint += '{} GP  '.format(coins['GP'])
         if coins['PP'] > 0:
             bigPrint += '{} PP  '.format(coins['PP'])
-        await client.send_file(message.channel, "E:\Pictures-H\coins.png")
+        await client.send_file(message.channel, "imgs\coins.png")
         await client.send_message(message.channel, bigPrint)
 
     if message.content.startswith('!hoard '):
@@ -397,11 +397,11 @@ async def on_message(message):
                 for x in range(0, len(magicItem)):
                     if magicItemn[x] > 0:
                         bigPrint += '{} {}(s)  '.format(magicItemn[x], magicItem[x])
-        await client.send_file(message.channel, "E:\Pictures-H\hoard.png")
+        await client.send_file(message.channel, "imgs\hoard.png")
         await client.send_message(message.channel, bigPrint)
 
     if message.content.startswith('!batboys'):
-        await client.send_file(message.channel, "E:\Pictures-H\Batboys.png")
+        await client.send_file(message.channel, "imgs\Batboys.png")
 
     # create a random dungeon image, save on desktop, print
     # if message.content.startswith('!test'):
@@ -418,4 +418,4 @@ async def on_message(message):
     # #     msg = await client.wait_for_message(author=message.author, content='hello')
     # #     await client.send_message(message.channel, 'Hello.')
 
-client.run("MzY2NDIxNDQ2MjA3MjA5NDgy.DL1_HQ.DRoaX95obL9snahUqQGHQ12PupA")
+client.run("MzY2NDIxNDQ2MjA3MjA5NDgy.DMFxZA.ncA3g-A5ozoNrw2n6Zoo9FuMhDU")
