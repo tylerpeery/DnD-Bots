@@ -179,17 +179,6 @@ async def on_message(message):
 
     if message.content.startswith('!hoard '):
         coins = {'CP': 0, 'SP': 0, 'EP': 0, 'GP': 0, 'PP': 0}
-        gems10 = ['Azurite', 'Banded Agate', 'Blue quartz', 'Eye agate', 'Hematite', 'Lapis lazuli', \
-                  'Malachite', 'Moss agate', 'Obsidian', 'Rhodochrosite', 'Tiger eye', 'Turquoise']
-        gems10n = np.zeros(len(gems10), int)
-        gems50 = ['Bloodstone', 'Carnelian', 'Chalcedony', 'Chrysprase', 'Citrine', 'Jasper', \
-                  'Moonstone', 'Onyx', 'Quartz', 'Sardonyx', 'Star rose quartz', 'Zircon']
-        gems50n = np.zeros(len(gems50), int)
-        art25 = ['Silver ewer', 'Carved bone statuette', 'Small gold bracelet', 'Cloth-of-gold vestments', \
-                 'Black velvet mask stitched with silver thread', 'Copper chalice with silver filigree', \
-                 'Pair of engraved bone dice', 'Small mirror set in painted wooden frame', \
-                 'Embroidered silk handkerchief', 'Gold locket with a painted portrait inside']
-        art25n = np.zeros(len(art25), int)
         magicItems = {'A0': 'Roll 1d6 times on Magic Item Table A', 'B0': 'Roll 1d4 times on Magic Item Table B', \
                  'C0': 'Roll 1d4 times on Magic Item Table C', 'F0': 'Roll 1d4 times on Magic Item Table F', \
                  'G0': 'Roll once on Magic Item Table G'}
@@ -209,86 +198,79 @@ async def on_message(message):
                 coins['SP'] += np.sum(np.random.randint(1, 7, 3)) * 100
                 coins['GP'] += np.sum(np.random.randint(1, 7, 2)) * 10
                 if roll <= 6:
-                    gems10n[0] = 0  # just take up a line, nothing happens
+                    continue  # just take up a line, nothing happens
                 elif roll <= 16:
-                    items = np.sum(np.random.randint(1,7,2))
-                    for x in range(0, items):
-                        gems10n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '010'
                 elif roll <= 26:
-                    items = np.sum(np.random.randint(1, 5, 2))
-                    for x in range(0, items):
-                        art25n[np.random.randint(0, 10, 1)] += 1
+                    gemsArtText = '025'
                 elif roll <= 36:
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems50n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '050'
                 elif roll <= 44:
                     magicText = 'A0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems10n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '010'
                 elif roll <= 52:
                     magicText = 'A0'
-                    items = np.sum(np.random.randint(1, 5, 2))
-                    for x in range(0, items):
-                        art25n[np.random.randint(0, 10, 1)] += 1
+                    gemsArtText = '025'
                 elif roll <= 60:
                     magicText = 'A0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems50n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '050'
                 elif roll <= 65:
                     magicText = 'B0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems10n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '010'
                 elif roll <= 70:
                     magicText = 'B0'
-                    items = np.sum(np.random.randint(1, 5, 2))
-                    for x in range(0, items):
-                        art25n[np.random.randint(0, 10, 1)] += 1
+                    gemsArtText = '025'
                 elif roll <= 75:
                     magicText = 'B0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems50n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '050'
                 elif roll <= 78:
                     magicText = 'C0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems10n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '010'
                 elif roll <= 80:
                     magicText = 'C0'
-                    items = np.sum(np.random.randint(1, 5, 2))
-                    for x in range(0, items):
-                        art25n[np.random.randint(0, 10, 1)] += 1
+                    gemsArtText = '025'
                 elif roll <= 85:
                     magicText = 'C0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems50n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '050'
                 elif roll <= 92:
                     magicText = 'F0'
-                    items = np.sum(np.random.randint(1, 5, 2))
-                    for x in range(0, items):
-                        art25n[np.random.randint(0, 10, 1)] += 1
+                    gemsArtText = '025'
                 elif roll <= 97:
                     magicText = 'F0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems50n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '050'
                 elif roll <= 99:
                     magicText = 'G0'
-                    items = np.sum(np.random.randint(1, 5, 2))
-                    for x in range(0, items):
-                        art25n[np.random.randint(0, 10, 1)] += 1
+                    gemsArtText = '025'
                 else:  # 100
                     magicText = 'G0'
-                    items = np.sum(np.random.randint(1, 7, 2))
-                    for x in range(0, items):
-                        gems50n[np.random.randint(0, 12, 1)] += 1
+                    gemsArtText = '050'
 
-                #  Roll for magic items
+                #  Where to roll for gems
+                try:
+                    gemsArtText
+                except NameError:  # if magicText doesn't exist yet
+                    continue
+                else:
+                    if gemsArtText == '010':  # get starting line of respective list
+                        gemsArtRoll = np.sum(np.random.randint(1, 7, 2))
+                        num, i, gstart = '10 GP GEMSTONES', 0, 0  # i to count lines
+                    elif gemsArtText == '025':
+                        gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                        num, i, gstart = '25 GP ART OBJECTS', 0, 0  # i to count lines
+                    elif gemsArtText == '050':
+                        gemsArtRoll = np.sum(np.random.randint(1, 7, 2))
+                        num, i, gstart = '50 GP GEMSTONES', 0, 0  # i to count lines
+
+                    with open("Art_Gems_Tables") as search:
+                        for line in search:
+                            if gstart > 0 and line == '\n':
+                                gend = i
+                                break
+                            i += 1
+                            line = line.rstrip()  # remove '\n' at end of line
+                            if num == line: gstart = i
+
+                #  Where to roll for magic items
                 try:
                     magicText
                 except NameError:  # if magicText doesn't exist yet
@@ -334,6 +316,31 @@ async def on_message(message):
                     coins['GP'] += np.sum(np.random.randint(1,7,2)) * 10
                     coins['PP'] += np.sum(np.random.randint(1,7,3))
 
+            #  Roll for gems/art
+            try:
+                gemsArtText
+            except NameError:  # if magicText doesn't exist yet
+                continue
+            else:
+                f = open('Art_Gems_Tables', 'r')
+                lines = f.readlines()[int(gstart+1):int(gend)]
+                f.close()
+                dieRange, gemsArt, gemsArtn = [0]*len(lines), [0]*len(lines), np.zeros(len(lines), int)
+                if gemsArtText == '010' or gemsArtText == '050': maxd = 12
+                elif gemsArtText == '025': maxd = 10
+                for x in range(0, len(lines)):
+                    lines[x] = lines[x].rstrip()
+                    dieRange[x], gemsArt[x] = lines[x].split(' ', 1)
+                for x in range(0, int(magicRoll)):
+                    dx = np.random.randint(1, maxd+1, 1)
+                    for n in range(0, len(dieRange)):
+                        if '-' in dieRange[n]:
+                            first, second = dieRange[n].split('-')
+                            if dx >= int(first) and dx <= int(second):
+                                gemsArtn[n] +=1
+                        elif dx == int(dieRange[n]):
+                            gemsArtn[n] +=1
+
             #  Roll for magic items
             try:
                 magicText
@@ -341,9 +348,10 @@ async def on_message(message):
                 continue
             else:
                 f = open('Magic_Item_Tables', 'r')
-                lines = f.readlines()[int(mstart+1):int(mend)]
+                lines = f.readlines()[int(mstart + 1):int(mend)]
                 f.close()
-                dieRange, magicItem, magicItemn = [0]*len(lines), [0]*len(lines), np.zeros(len(lines), int)
+                dieRange, magicItem, magicItemn = [0] * len(lines), [0] * len(lines), np.zeros(len(lines),
+                                                                                               int)
                 for x in range(0, len(lines)):
                     lines[x] = lines[x].rstrip()
                     dieRange[x], magicItem[x] = lines[x].split(' ', 1)
@@ -353,9 +361,9 @@ async def on_message(message):
                         if '-' in dieRange[n]:
                             first, second = dieRange[n].split('-')
                             if d100 >= int(first) and d100 <= int(second):
-                                magicItemn[n] +=1
+                                magicItemn[n] += 1
                         elif d100 == int(dieRange[n]):
-                            magicItemn[n] +=1
+                            magicItemn[n] += 1
 
         bigPrint = "BUM BA DUH BUUUH!: \r"
         if coins['CP'] > 0:
@@ -368,24 +376,20 @@ async def on_message(message):
             bigPrint += '{} GP  '.format(coins['GP'])
         if coins['PP'] > 0:
             bigPrint += '{} PP  '.format(coins['PP'])
-        if np.sum(gems10n) > 0:
-            bigPrint += '\r'
-            for x in range(0,len(gems10)):
-                if gems10n[x] > 0:
-                    bigPrint += '{} {}(s)  '.format(gems10n[x], gems10[x])
-            bigPrint += '= {} GP'.format(np.sum(gems10n)*10)
-        if np.sum(art25n) > 0:
-            bigPrint += '\r'
-            for x in range(0, len(art25)):
-                if art25n[x] > 0:
-                    bigPrint += '{} {}(s)  '.format(art25n[x], art25[x])
-            bigPrint += '= {} GP'.format(np.sum(art25n)*25)
-        if np.sum(gems50n) > 0:
-            bigPrint += '\r'
-            for x in range(0, len(gems50)):
-                if gems50n[x] > 0:
-                    bigPrint += '{} {}(s)  '.format(gems50n[x], gems50[x])
-            bigPrint += '= {} GP'.format(np.sum(gems50n)*50)
+
+        try:
+            gemsArtText
+        except NameError:  # if gemsArtText doesn't exist yet
+            bigPrint += '\r No art or jewels this time, friend.'
+        else:
+            if np.sum(gemsArtn) > 0:
+                bigPrint += '\r'
+                for x in range(0, len(gemsArt)):
+                    if gemsArtn[x] > 0:
+                        bigPrint += '{} {}(s)  '.format(gemsArtn[x], gemsArt[x])
+            gemsArtMultiplier = int(gemsArtText[1:])
+            bigPrint += '= {} GP'.format(np.sum(gemsArtn) * gemsArtMultiplier)
+
         try:
             magicText
         except NameError:  # if magicText doesn't exist yet
