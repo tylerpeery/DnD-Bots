@@ -5,6 +5,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import asyncio
 import random
+import datetime
 
 Client = discord.Client()
 bot_prefix= "!"
@@ -14,11 +15,27 @@ global charName
 # a = np.random.randint(2, size=10)
 # print(a)
 
+
+
 @client.event
 async def on_ready():
     print("Bot Online!")
     print("Name: {}".format(client.user.name))
     print("ID: {}".format(client.user.id))
+    global generalChannel
+
+    def get_channel(channels, channel_name): #  get channel ID for general
+        for channel in client.get_all_channels():
+            print(channel)
+            if channel.name == channel_name:
+                return channel
+        return None
+    generalChannel = get_channel(client.get_all_channels(), 'general')
+
+    if datetime.datetime.today().weekday() == 3:
+        await client.send_file(generalChannel, "E:\Pictures-H\gamenight.png")
+        await client.send_message(generalChannel, 'It\'s game night baby!)
+
 
 @client.event
 async def on_message(message):
