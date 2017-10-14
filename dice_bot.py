@@ -428,12 +428,12 @@ async def on_message(message):
     # #     msg = await client.wait_for_message(author=message.author, content='hello')
     # #     await client.send_message(message.channel, 'Hello.')
 
-@client.command(pass_context=True)
-async def ping(ctx):
-    await client.say("Pong!")
-
-@client.command(pass_context=True)
-async def test(ctx):
-    await client.say("Got it!")
+# @client.command(pass_context=True)
+# async def ping(ctx):
+#     await client.say("Pong!")
+#
+# @client.command(pass_context=True)
+# async def test(ctx):
+#     await client.say("Got it!")
 
 client.run("MzY2NDIxNDQ2MjA3MjA5NDgy.DMFxZA.ncA3g-A5ozoNrw2n6Zoo9FuMhDU")
