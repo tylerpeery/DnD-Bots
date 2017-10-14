@@ -407,6 +407,12 @@ async def on_message(message):
     if message.content.startswith('!batboys'):
         await client.send_file(message.channel, "imgs\Batboys.png")
 
+async def logout(self, ctx):
+    """Logs the bot out of Discord."""
+    print('Logout command invoked. Shutting down.')
+    await ctx.message.delete()
+    await ctx.bot.logout()
+
     # create a random dungeon image, save on desktop, print
     # if message.content.startswith('!test'):
     #     w, h = 600, 800
