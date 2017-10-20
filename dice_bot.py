@@ -70,6 +70,15 @@ async def on_message(message):
         else:
             await client.send_message(message.channel, 'You rolled {}, totalling {} with your {} modifier.'.format(rolls, totalRoll, modifier))
 
+    if message.content.startswith('!char'):
+        attributes = np.zeros(6, int)
+        for x in range(0, 6):
+            rolls = np.random.randint(1, 7, 4)
+            rolls = sorted(rolls, reverse = True)
+            attributes[x] = sum(sorted(rolls[0:3]))
+        await client.send_message(message.channel, 'Your stat rolls are: {}.'.format(attributes))
+
+
     if message.content.startswith('!init '):
         try:
             rolls
