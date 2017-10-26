@@ -254,6 +254,94 @@ async def on_message(message):
                     magicText = 'G0'
                     gemsArtText = '050'
 
+            elif int(level) <= 10:
+                coins['CP'] += np.sum(np.random.randint(1, 7, 2)) * 100
+                coins['SP'] += np.sum(np.random.randint(1, 7, 2)) * 1000
+                coins['GP'] += np.sum(np.random.randint(1, 7, 6)) * 100
+                coins['PP'] += np.sum(np.random.randint(1, 7, 3)) * 10
+                if roll <= 4:
+                    continue  # just take up a line, nothing happens
+                elif roll <= 10:
+                    gemsArtText = '525'
+                elif roll <= 16:
+                    gemsArtText = '550'
+                elif roll <= 22:
+                    gemsArtText = '5100'
+                elif roll <= 28:
+                    gemsArtText = '5250'
+                elif roll <= 32:
+                    magicText = 'A5'
+                    gemsArtText = '525'
+                elif roll <= 36:
+                    magicText = 'A5'
+                    gemsArtText = '550'
+                elif roll <= 40:
+                    magicText = 'A5'
+                    gemsArtText = '5100'
+                elif roll <= 44:
+                    magicText = 'A5'
+                    gemsArtText = '5250'
+                elif roll <= 49:
+                    magicText = 'B5'
+                    gemsArtText = '525'
+                elif roll <= 54:
+                    magicText = 'B5'
+                    gemsArtText = '550'
+                elif roll <= 59:
+                    magicText = 'B5'
+                    gemsArtText = '5100'
+                elif roll <= 63:
+                    magicText = 'B5'
+                    gemsArtText = '5250'
+                elif roll <= 66:
+                    magicText = 'C5'
+                    gemsArtText = '525'
+                elif roll <= 69:
+                    magicText = 'C5'
+                    gemsArtText = '550'
+                elif roll <= 72:
+                    magicText = 'C5'
+                    gemsArtText = '5100'
+                elif roll <= 74:
+                    magicText = 'C5'
+                    gemsArtText = '5250'
+                elif roll <= 76:
+                    magicText = 'D5'
+                    gemsArtText = '525'
+                elif roll <= 78:
+                    magicText = 'D5'
+                    gemsArtText = '550'
+                elif roll <= 79:
+                    magicText = 'D5'
+                    gemsArtText = '5100'
+                elif roll <= 80:
+                    magicText = 'D5'
+                    gemsArtText = '5250'
+                elif roll <= 84:
+                    magicText = 'F5'
+                    gemsArtText = '525'
+                elif roll <= 88:
+                    magicText = 'F5'
+                    gemsArtText = '550'
+                elif roll <= 91:
+                    magicText = 'F5'
+                    gemsArtText = '5100'
+                elif roll <= 94:
+                    magicText = 'F5'
+                    gemsArtText = '5250'
+                elif roll <= 96:
+                    magicText = 'G5'
+                    gemsArtText = '5100'
+                elif roll <= 98:
+                    magicText = 'G5'
+                    gemsArtText = '5250'
+                elif roll <= 99:
+                    magicText = 'H5'
+                    gemsArtText = '5100'
+                else:  # 100
+                    magicText = 'H5'
+                    gemsArtText = '5250'
+
                 #  Where to roll for gems
                 try:
                     gemsArtText
@@ -269,6 +357,18 @@ async def on_message(message):
                     elif gemsArtText == '050':
                         gemsArtRoll = np.sum(np.random.randint(1, 7, 2))
                         num, i, gstart = '50 GP GEMSTONES', 0, 0  # i to count lines
+                    elif gemsArtText == '525':
+                        gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                        num, i, gstart = '25 GP ART OBJECTS', 0, 0  # i to count lines
+                    elif gemsArtText == '550':
+                        gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
+                        num, i, gstart = '50 GP GEMSTONES', 0, 0  # i to count lines
+                    elif gemsArtText == '5100':
+                        gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
+                        num, i, gstart = '100 GP GEMSTONES', 0, 0  # i to count lines
+                    elif gemsArtText == '5250':
+                        gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                        num, i, gstart = '250 GP ART OBJECTS', 0, 0  # i to count lines
 
                     with open("Art_Gems_Tables") as search:
                         for line in search:
@@ -300,6 +400,27 @@ async def on_message(message):
                     elif magicText == 'G0':
                         magicRoll = np.random.randint(1, 2, 1)
                         num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
+                    elif magicText == 'A5':
+                        magicRoll = np.random.randint(1, 7, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
+                    elif magicText == 'B5':
+                        magicRoll = np.random.randint(1, 5, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
+                    elif magicText == 'C5':
+                        magicRoll = np.random.randint(1, 5, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
+                    elif magicText == 'D5':
+                        magicRoll = np.random.randint(1, 2, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE D', 0, 0  # i to count lines
+                    elif magicText == 'F5':
+                        magicRoll = np.random.randint(1, 5, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
+                    elif magicText == 'G5':
+                        magicRoll = np.random.randint(1, 5, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
+                    elif magicText == 'H5':
+                        magicRoll = np.random.randint(1, 2, 1)
+                        num, i, mstart = 'MAGIC ITEM TABLE H', 0, 0  # i to count lines
                     with open("Magic_Item_Tables") as search:
                         for line in search:
                             if mstart > 0 and line == '\n':
@@ -335,8 +456,10 @@ async def on_message(message):
                 lines = f.readlines()[int(gstart+1):int(gend)]
                 f.close()
                 dieRange, gemsArt, gemsArtn = [0]*len(lines), [0]*len(lines), np.zeros(len(lines), int)
-                if gemsArtText == '010' or gemsArtText == '050': maxd = 12
-                elif gemsArtText == '025': maxd = 10
+                if (gemsArtText == '010' or gemsArtText == '050' or
+                    gemsArtText == '550'): maxd = 12
+                elif (gemsArtText == '025' or gemsArtText == '5100' or
+                    gemsArtText == '525' or gemsArtText == '5250'): maxd = 10
                 for x in range(0, len(lines)):
                     lines[x] = lines[x].rstrip()
                     dieRange[x], gemsArt[x] = lines[x].split(' ', 1)
