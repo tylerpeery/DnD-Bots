@@ -140,7 +140,12 @@ async def on_message(message):
     if message.content.startswith('!loot '):
         coins = {'CP': 0, 'SP': 0, 'EP': 0, 'GP': 0, 'PP': 0}
         rollCheck = message.content[6:]
-        level, howMany = rollCheck.split(' ')
+        numArgs = rollCheck.count(' ') + 1
+        if numArgs == 1:
+            howMany = 1
+            level = rollCheck
+        else:
+            level, howMany = rollCheck.split(' ')
         for x in range(0, int(howMany)):
             roll = np.random.randint(1, 101, 1)
             if '/' in level:
@@ -188,9 +193,6 @@ async def on_message(message):
 
     if message.content.startswith('!hoard '):
         coins = {'CP': 0, 'SP': 0, 'EP': 0, 'GP': 0, 'PP': 0}
-        magicItems = {'A0': 'Roll 1d6 times on Magic Item Table A', 'B0': 'Roll 1d4 times on Magic Item Table B', \
-                 'C0': 'Roll 1d4 times on Magic Item Table C', 'F0': 'Roll 1d4 times on Magic Item Table F', \
-                 'G0': 'Roll once on Magic Item Table G'}
         rollCheck = message.content[7:]
         numArgs = rollCheck.count(' ') + 1
         if numArgs == 1:
