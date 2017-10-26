@@ -2,7 +2,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
-SAtkModifier = 6
+SAtkModifier = 6wd
 SDmgModifier = 4
 BAtkModifier = 6+2
 BDmgModifier = 4

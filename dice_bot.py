@@ -416,6 +416,35 @@ async def on_message(message):
     if message.content.startswith('!batboys'):
         await client.send_file(message.channel, "imgs\Batboys.png")
 
+    if (message.content.startswith('Thanks Dice Bot') or message.content.startswith('Thanks DiceBot')
+        or message.content.startswith('Thanks dice bot') or message.content.startswith('Thanks dicebot')
+        or message.content.startswith('Thanks Dicebot') or
+        message.content.startswith('Thank you Dice Bot') or message.content.startswith('Thank you DiceBot')
+        or message.content.startswith('Thank you dice bot') or message.content.startswith('Thank you dicebot')
+        or message.content.startswith('Thank you Dicebot') or
+        message.content.startswith('thank you Dice Bot') or message.content.startswith('thank you DiceBot')
+        or message.content.startswith('thank you dice bot') or message.content.startswith('thank you dicebot')
+        or message.content.startswith('thank you Dicebot') or
+        message.content.startswith('thanks Dice Bot') or message.content.startswith('thanks DiceBot')
+        or message.content.startswith('thanks dice bot') or message.content.startswith('thanks dicebot')
+        or message.content.startswith('thanks Dicebot')):
+        charName = [message.author.display_name]
+        await client.send_message(message.channel, 'You are most welcome, {}.'.format(charName[0]))
+
+    if (message.content.startswith('Good job Dice Bot') or message.content.startswith('Good job DiceBot')
+        or message.content.startswith('Good job dice bot') or message.content.startswith('Good job dicebot')
+        or message.content.startswith('Good job Dicebot') or
+        message.content.startswith('good job Dice Bot') or message.content.startswith('good job DiceBot')
+        or message.content.startswith('good job dice bot') or message.content.startswith('good job dicebot')
+        or message.content.startswith('good job Dicebot') or
+        message.content.startswith('Good Dice Bot') or message.content.startswith('Good DiceBot')
+        or message.content.startswith('Good dice bot') or message.content.startswith('Good dicebot')
+        or message.content.startswith('Good Dicebot') or message.content.startswith('Good bot') or
+        message.content.startswith('Good Dice Bot') or message.content.startswith('good DiceBot')
+        or message.content.startswith('Good dice bot') or message.content.startswith('good dicebot')
+        or message.content.startswith('Good Dicebot') or message.content.startswith('good bot')):
+        charName = [message.author.display_name]
+        await client.send_message(message.channel, 'Thank you, {}; that is very kind of you to say.'.format(charName[0]))
 
     if message.content.startswith('!logout'):
         """Logs the bot out of Discord."""
