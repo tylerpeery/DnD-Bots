@@ -563,9 +563,9 @@ async def on_message(message):
         message.content.startswith('Good Dice Bot') or message.content.startswith('Good DiceBot')
         or message.content.startswith('Good dice bot') or message.content.startswith('Good dicebot')
         or message.content.startswith('Good Dicebot') or message.content.startswith('Good bot') or
-        message.content.startswith('Good Dice Bot') or message.content.startswith('good DiceBot')
-        or message.content.startswith('Good dice bot') or message.content.startswith('good dicebot')
-        or message.content.startswith('Good Dicebot') or message.content.startswith('good bot')):
+        message.content.startswith('good Dice Bot') or message.content.startswith('good DiceBot')
+        or message.content.startswith('good dice bot') or message.content.startswith('good dicebot')
+        or message.content.startswith('good Dicebot') or message.content.startswith('good bot')):
         charName = [message.author.display_name]
         await client.send_message(message.channel, 'Thank you, {}; that is very kind of you to say.'.format(charName[0]))
 
