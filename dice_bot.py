@@ -209,7 +209,7 @@ async def on_message(message):
                 coins['SP'] += np.sum(np.random.randint(1, 7, 3)) * 100
                 coins['GP'] += np.sum(np.random.randint(1, 7, 2)) * 10
                 if roll <= 6:
-                    continue  # just take up a line, nothing happens
+                    print("nothing")  # just take up a line, nothing happens
                 elif roll <= 16:
                     gemsArtText = '010'
                 elif roll <= 26:
@@ -262,7 +262,7 @@ async def on_message(message):
                 coins['GP'] += np.sum(np.random.randint(1, 7, 6)) * 100
                 coins['PP'] += np.sum(np.random.randint(1, 7, 3)) * 10
                 if roll <= 4:
-                    continue  # just take up a line, nothing happens
+                    print("nothing")  # just take up a line, nothing happens
                 elif roll <= 10:
                     gemsArtText = '525'
                 elif roll <= 16:
