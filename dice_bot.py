@@ -344,109 +344,93 @@ async def on_message(message):
                     magicText = 'H5'
                     gemsArtText = '5250'
 
-                #  Where to roll for gems
-                try:
-                    gemsArtText
-                except NameError:  # if magicText doesn't exist yet
-                    continue
-                else:
-                    if gemsArtText == '010':  # get starting line of respective list
-                        gemsArtRoll = np.sum(np.random.randint(1, 7, 2))
-                        num, i, gstart = '10 GP GEMSTONES', 0, 0  # i to count lines
-                    elif gemsArtText == '025':
-                        gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
-                        num, i, gstart = '25 GP ART OBJECTS', 0, 0  # i to count lines
-                    elif gemsArtText == '050':
-                        gemsArtRoll = np.sum(np.random.randint(1, 7, 2))
-                        num, i, gstart = '50 GP GEMSTONES', 0, 0  # i to count lines
-                    elif gemsArtText == '525':
-                        gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
-                        num, i, gstart = '25 GP ART OBJECTS', 0, 0  # i to count lines
-                    elif gemsArtText == '550':
-                        gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
-                        num, i, gstart = '50 GP GEMSTONES', 0, 0  # i to count lines
-                    elif gemsArtText == '5100':
-                        gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
-                        num, i, gstart = '100 GP GEMSTONES', 0, 0  # i to count lines
-                    elif gemsArtText == '5250':
-                        gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
-                        num, i, gstart = '250 GP ART OBJECTS', 0, 0  # i to count lines
+            #  Where to roll for gems
+            try:
+                gemsArtText
+            except NameError:  # if magicText doesn't exist yet
+                continue
+            else:
+                if gemsArtText == '010':  # get starting line of respective list
+                    gemsArtRoll = np.sum(np.random.randint(1, 7, 2))
+                    num, i, gstart = '10 GP GEMSTONES', 0, 0  # i to count lines
+                elif gemsArtText == '025':
+                    gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                    num, i, gstart = '25 GP ART OBJECTS', 0, 0  # i to count lines
+                elif gemsArtText == '050':
+                    gemsArtRoll = np.sum(np.random.randint(1, 7, 2))
+                    num, i, gstart = '50 GP GEMSTONES', 0, 0  # i to count lines
+                elif gemsArtText == '525':
+                    gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                    num, i, gstart = '25 GP ART OBJECTS', 0, 0  # i to count lines
+                elif gemsArtText == '550':
+                    gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
+                    num, i, gstart = '50 GP GEMSTONES', 0, 0  # i to count lines
+                elif gemsArtText == '5100':
+                    gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
+                    num, i, gstart = '100 GP GEMSTONES', 0, 0  # i to count lines
+                elif gemsArtText == '5250':
+                    gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                    num, i, gstart = '250 GP ART OBJECTS', 0, 0  # i to count lines
 
-                    with open("Art_Gems_Tables") as search:
-                        for line in search:
-                            if gstart > 0 and line == '\n':
-                                gend = i
-                                break
-                            i += 1
-                            line = line.rstrip()  # remove '\n' at end of line
-                            if num == line: gstart = i
+                with open("Art_Gems_Tables") as search:
+                    for line in search:
+                        if gstart > 0 and line == '\n':
+                            gend = i
+                            break
+                        i += 1
+                        line = line.rstrip()  # remove '\n' at end of line
+                        if num == line: gstart = i
 
-                #  Where to roll for magic items
-                try:
-                    magicText
-                except NameError:  # if magicText doesn't exist yet
-                    continue
-                else:
-                    if magicText == 'A0':  # get starting line of respective list
-                        magicRoll = np.random.randint(1, 7, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
-                    elif magicText == 'B0':
-                        magicRoll = np.random.randint(1, 5, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
-                    elif magicText == 'C0':
-                        magicRoll = np.random.randint(1, 5, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
-                    elif magicText == 'F0':
-                        magicRoll = np.random.randint(1, 5, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
-                    elif magicText == 'G0':
-                        magicRoll = np.random.randint(1, 2, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
-                    elif magicText == 'A5':
-                        magicRoll = np.random.randint(1, 7, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
-                    elif magicText == 'B5':
-                        magicRoll = np.random.randint(1, 5, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
-                    elif magicText == 'C5':
-                        magicRoll = np.random.randint(1, 5, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
-                    elif magicText == 'D5':
-                        magicRoll = np.random.randint(1, 2, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE D', 0, 0  # i to count lines
-                    elif magicText == 'F5':
-                        magicRoll = np.random.randint(1, 5, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
-                    elif magicText == 'G5':
-                        magicRoll = np.random.randint(1, 5, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
-                    elif magicText == 'H5':
-                        magicRoll = np.random.randint(1, 2, 1)
-                        num, i, mstart = 'MAGIC ITEM TABLE H', 0, 0  # i to count lines
-                    with open("Magic_Item_Tables") as search:
-                        for line in search:
-                            if mstart > 0 and line == '\n':
-                                mend = i
-                                break
-                            i += 1
-                            line = line.rstrip()  # remove '\n' at end of line
-                            if num == line: mstart = i
-
-            elif int(level) <= 10:
-                if roll <= 30:
-                    coins['CP'] += np.sum(np.random.randint(1,7,4)) * 100
-                    coins['EP'] += np.sum(np.random.randint(1,7,1)) * 10
-                elif roll <= 60:
-                    coins['SP'] += np.sum(np.random.randint(1,7,6)) * 10
-                    coins['GP'] += np.sum(np.random.randint(1,7,2)) * 10
-                elif roll <= 70:
-                    coins['EP'] += np.sum(np.random.randint(1,7,3)) * 10
-                    coins['GP'] += np.sum(np.random.randint(1,7,2)) * 10
-                elif roll <= 95:
-                    coins['GP'] += np.sum(np.random.randint(1,7,4)) * 10
-                else:
-                    coins['GP'] += np.sum(np.random.randint(1,7,2)) * 10
-                    coins['PP'] += np.sum(np.random.randint(1,7,3))
+            #  Where to roll for magic items
+            try:
+                magicText
+            except NameError:  # if magicText doesn't exist yet
+                continue
+            else:
+                if magicText == 'A0':  # get starting line of respective list
+                    magicRoll = np.random.randint(1, 7, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
+                elif magicText == 'B0':
+                    magicRoll = np.random.randint(1, 5, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
+                elif magicText == 'C0':
+                    magicRoll = np.random.randint(1, 5, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
+                elif magicText == 'F0':
+                    magicRoll = np.random.randint(1, 5, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
+                elif magicText == 'G0':
+                    magicRoll = np.random.randint(1, 2, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
+                elif magicText == 'A5':
+                    magicRoll = np.random.randint(1, 7, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
+                elif magicText == 'B5':
+                    magicRoll = np.random.randint(1, 5, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
+                elif magicText == 'C5':
+                    magicRoll = np.random.randint(1, 5, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
+                elif magicText == 'D5':
+                    magicRoll = np.random.randint(1, 2, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE D', 0, 0  # i to count lines
+                elif magicText == 'F5':
+                    magicRoll = np.random.randint(1, 5, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
+                elif magicText == 'G5':
+                    magicRoll = np.random.randint(1, 5, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
+                elif magicText == 'H5':
+                    magicRoll = np.random.randint(1, 2, 1)
+                    num, i, mstart = 'MAGIC ITEM TABLE H', 0, 0  # i to count lines
+                with open("Magic_Item_Tables") as search:
+                    for line in search:
+                        if mstart > 0 and line == '\n':
+                            mend = i
+                            break
+                        i += 1
+                        line = line.rstrip()  # remove '\n' at end of line
+                        if num == line: mstart = i
 
             #  Roll for gems/art
             try:
