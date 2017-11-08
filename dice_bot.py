@@ -62,13 +62,16 @@ async def on_message(message):
         print(rolls)
         if int(modifier) == 0:
             if int(howMany) == 1:
-                await client.send_message(message.channel, 'You rolled {}.'.format(rolls))
+                await client.send_message(message.channel, 'You rolled **{}**.'.format(rolls[0]))
             else:
-                await client.send_message(message.channel, 'You rolled {}, totalling {}.'.format(rolls, totalRoll))
+                await client.send_message(message.channel, 'You rolled {}, totalling **{}**.'.format(', '.join(
+                    map(str, rolls)), totalRoll))
         elif int(modifier) > 0:
-            await client.send_message(message.channel, 'You rolled {}, totalling {} with your +{} modifier.'.format(rolls, totalRoll, modifier))
+            await client.send_message(message.channel, 'You rolled {}, totalling **{}** with your +{} modifier.'.format(
+                ', '.join(map(str, rolls)), totalRoll, modifier))
         else:
-            await client.send_message(message.channel, 'You rolled {}, totalling {} with your {} modifier.'.format(rolls, totalRoll, modifier))
+            await client.send_message(message.channel, 'You rolled {}, totalling {} with your {} modifier.'.format(
+                ', '.join(map(str, rolls)), totalRoll, modifier))
 
     if message.content.startswith('!char'):
         attributes = np.zeros(6, int)
