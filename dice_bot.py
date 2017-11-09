@@ -151,6 +151,7 @@ async def on_message(message):
             level, howMany = rollCheck.split(' ')
         for x in range(0, int(howMany)):
             roll = np.random.randint(1, 101, 1)
+            print(roll)
             if '/' in level:
                 level = '0'
             if int(level) <= 4:
@@ -205,6 +206,7 @@ async def on_message(message):
             level, howMany = rollCheck.split(' ')
         for x in range(0, int(howMany)):
             roll = np.random.randint(1, 101, 1)
+            print(roll)
             if '/' in level:
                 level = '0'
             if int(level) <= 4:
