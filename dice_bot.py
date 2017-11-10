@@ -10,6 +10,10 @@ import datetime
 Client = discord.Client()
 bot_prefix= "!"
 client = commands.Bot(command_prefix=bot_prefix)
+with open("bot_id.txt") as search:
+    for line in search:
+        bot_ID = line
+
 global rolls
 global charName
 # a = np.random.randint(2, size=10)
@@ -588,4 +592,4 @@ async def on_message(message):
 # async def test(ctx):
 #     await client.say("Got it!")
 
-client.run("MzY2NDIxNDQ2MjA3MjA5NDgy.DMFxZA.ncA3g-A5ozoNrw2n6Zoo9FuMhDU")
+client.run(bot_ID)
