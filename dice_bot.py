@@ -92,25 +92,28 @@ async def on_message(message):
         except NameError:  # if rolls doesn't exist yet
             rollCheck = message.content[6:]
             if rollCheck == 'start':
-                rolls = 1
-                del rolls
                 await client.send_message(message.channel, 'Ready to roll for initiative!')
                 return
             numArgs = rollCheck.count(' ')+1
             if numArgs == 1:
                 howMany, modifier = 1, rollCheck
                 charName = [message.author.display_name]  # author.display_name
+                rolls = sorted(np.random.randint(1, 20 + 1, int(howMany)) + int(modifier), reverse=True)
+                charName = [charName for _, charName in sorted(zip(rolls, charName), reverse=True)]
             elif numArgs == 3:
                 howMany, modifier, charName = rollCheck.split(' ')
                 charName = [charName]
-                for x in range(0, int(howMany)-1):
-                    charName.append(charName[0])
+                if howMany == 'set':
+                    rolls = modifier  # !init set roll name
+                else:
+                    for x in range(0, int(howMany)-1):
+                        charName.append(charName[0])
+                    rolls = sorted(np.random.randint(1, 20 + 1, int(howMany)) + int(modifier), reverse=True)
+                charName = [charName for _, charName in sorted(zip(rolls, charName), reverse=True)]
             else:
                 await client.send_message(message.channel, 'Error: You must enter 1 or 3 inputs for initiative, see bot-talk channel.')
                 return
-            rolls = sorted(np.random.randint(1, 20+1, int(howMany))+int(modifier), reverse=True)
-            charName = [charName for _, charName in sorted(zip(rolls, charName), reverse=True)]
-            if numArgs == 1:
+            if numArgs == 1 or howMany == 'set':
                 await client.send_message(message.channel, '{}s initiative roll is {}.'.format(charName, rolls))
             else:
                 bigPrint = "Your initiative rolls are: \r"
@@ -130,12 +133,11 @@ async def on_message(message):
                 rollsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
             elif numArgs == 3:
                 howMany, modifier, charNameAdd = rollCheck.split(' ')
+                charNameAdd = [charNameAdd]
                 if howMany == 'set':
-                    rollsAdd = charNameAdd  # because order is switched, !init set name roll
-                    charNameAdd = [modifier]
+                    rollsAdd = modifier  # because order is !init set roll name
                     charName.append(charNameAdd[0])
                 else:
-                    charNameAdd = [charNameAdd]
                     for x in range(0, int(howMany)):
                         charName.append(charNameAdd[0])
                     rollsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
