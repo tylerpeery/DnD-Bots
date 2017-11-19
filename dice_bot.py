@@ -92,6 +92,7 @@ async def on_message(message):
         except NameError:  # if rolls doesn't exist yet
             rollCheck = message.content[6:]
             if rollCheck == 'start':
+                rolls = 1
                 del rolls
                 await client.send_message(message.channel, 'Ready to roll for initiative!')
                 return
