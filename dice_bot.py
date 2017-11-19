@@ -104,7 +104,7 @@ async def on_message(message):
                 howMany, modifier, charName = rollCheck.split(' ')
                 charName = [charName]
                 if howMany == 'set':
-                    rolls = modifier  # !init set roll name
+                    rolls = np.random.randint(int(modifier), int(modifier) + 1, 1)  # !init set roll name
                 else:
                     for x in range(0, int(howMany)-1):
                         charName.append(charName[0])
@@ -135,7 +135,7 @@ async def on_message(message):
                 howMany, modifier, charNameAdd = rollCheck.split(' ')
                 charNameAdd = [charNameAdd]
                 if howMany == 'set':
-                    rollsAdd = modifier  # because order is !init set roll name
+                    rollsAdd = np.random.randint(int(modifier), int(modifier)+1, 1)  # because order is !init set roll name
                     charName.append(charNameAdd[0])
                 else:
                     for x in range(0, int(howMany)):
