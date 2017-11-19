@@ -14,7 +14,7 @@ with open("bot_id.txt") as search:
     for line in search:
         bot_ID = line
 
-global rolls
+global inits
 global charName
 # a = np.random.randint(2, size=10)
 # print(a)
@@ -43,7 +43,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    global rolls
+    global inits
     global charName
     if message.content.startswith('!hit'):  # alias for !details
         charName = [message.author.display_name]
@@ -88,8 +88,8 @@ async def on_message(message):
 
     if message.content.startswith('!init '):
         try:
-            rolls
-        except NameError:  # if rolls doesn't exist yet
+            inits
+        except NameError:  # if inits doesn't exist yet
             rollCheck = message.content[6:]
             if rollCheck == 'start':
                 await client.send_message(message.channel, 'Ready to roll for initiative!')
@@ -98,59 +98,59 @@ async def on_message(message):
             if numArgs == 1:
                 howMany, modifier = 1, rollCheck
                 charName = [message.author.display_name]  # author.display_name
-                rolls = sorted(np.random.randint(1, 20 + 1, int(howMany)) + int(modifier), reverse=True)
-                charName = [charName for _, charName in sorted(zip(rolls, charName), reverse=True)]
+                inits = sorted(np.random.randint(1, 20 + 1, int(howMany)) + int(modifier), reverse=True)
+                charName = [charName for _, charName in sorted(zip(inits, charName), reverse=True)]
             elif numArgs == 3:
                 howMany, modifier, charName = rollCheck.split(' ')
                 charName = [charName]
                 if howMany == 'set':
-                    rolls = np.random.randint(int(modifier), int(modifier) + 1, 1)  # !init set roll name
+                    inits = np.random.randint(int(modifier), int(modifier) + 1, 1)  # !init set roll name
                 else:
                     for x in range(0, int(howMany)-1):
                         charName.append(charName[0])
-                    rolls = sorted(np.random.randint(1, 20 + 1, int(howMany)) + int(modifier), reverse=True)
-                charName = [charName for _, charName in sorted(zip(rolls, charName), reverse=True)]
+                    inits = sorted(np.random.randint(1, 20 + 1, int(howMany)) + int(modifier), reverse=True)
+                charName = [charName for _, charName in sorted(zip(inits, charName), reverse=True)]
             else:
                 await client.send_message(message.channel, 'Error: You must enter 1 or 3 inputs for initiative, see bot-talk channel.')
                 return
             if numArgs == 1 or howMany == 'set':
-                await client.send_message(message.channel, '{}s initiative roll is {}.'.format(charName, rolls))
+                await client.send_message(message.channel, '{}s initiative roll is {}.'.format(charName, inits))
             else:
                 bigPrint = "Your initiative rolls are: \r"
                 for x in range(0, len(charName)):
-                    bigPrint += '{} {}\r'.format(rolls[x], charName[x])
+                    bigPrint += '{} {}\r'.format(inits[x], charName[x])
                 await client.send_message(message.channel, bigPrint)
-        else:  # rolls already exists, must append new rolls
+        else:  # inits already exists, must append new inits
             rollCheck = message.content[6:]
             if rollCheck == 'start':
-                del rolls
+                del inits
                 await client.send_message(message.channel, 'Ready to roll for initiative!')
                 return
             numArgs = rollCheck.count(' ') + 1
             if numArgs == 1:
                 howMany, modifier = 1, rollCheck
                 charName.extend([message.author.display_name])  # author.display_name
-                rollsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
+                initsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
             elif numArgs == 3:
                 howMany, modifier, charNameAdd = rollCheck.split(' ')
                 charNameAdd = [charNameAdd]
                 if howMany == 'set':
-                    rollsAdd = np.random.randint(int(modifier), int(modifier)+1, 1)  # because order is !init set roll name
+                    initsAdd = np.random.randint(int(modifier), int(modifier)+1, 1)  # because order is !init set roll name
                     charName.append(charNameAdd[0])
                 else:
                     for x in range(0, int(howMany)):
                         charName.append(charNameAdd[0])
-                    rollsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
+                    initsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
             else:
                 await client.send_message(message.channel,
                                           'Error: You must enter 1 or 3 inputs for initiative, see bot-talk channel.')
                 return
-            rolls = np.append(rolls, rollsAdd)
-            charName = [charName for _, charName in sorted(zip(rolls, charName), reverse=True)]
-            rolls = sorted(rolls, reverse=True)
+            inits = np.append(inits, initsAdd)
+            charName = [charName for _, charName in sorted(zip(inits, charName), reverse=True)]
+            inits = sorted(inits, reverse=True)
             bigPrint = "Your initiative rolls are: \r"
             for x in range(0, len(charName)):
-                bigPrint += '{} {}\r'.format(rolls[x], charName[x])
+                bigPrint += '{} {}\r'.format(inits[x], charName[x])
             await client.send_message(message.channel, bigPrint)
 
     if message.content.startswith('!loot '):
