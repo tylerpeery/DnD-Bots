@@ -126,16 +126,22 @@ async def on_message(message):
             if numArgs == 1:
                 howMany, modifier = 1, rollCheck
                 charName.extend([message.author.display_name])  # author.display_name
+                rollsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
             elif numArgs == 3:
                 howMany, modifier, charNameAdd = rollCheck.split(' ')
-                charNameAdd = [charNameAdd]
-                for x in range(0, int(howMany)):
+                if howMany == 'set':
+                    rollsAdd = charNameAdd  # because order is switched, !init set name roll
+                    charNameAdd = [modifier]
                     charName.append(charNameAdd[0])
+                else:
+                    charNameAdd = [charNameAdd]
+                    for x in range(0, int(howMany)):
+                        charName.append(charNameAdd[0])
+                    rollsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
             else:
                 await client.send_message(message.channel,
                                           'Error: You must enter 1 or 3 inputs for initiative, see bot-talk channel.')
                 return
-            rollsAdd = np.random.randint(1, 20 + 1, int(howMany)) + int(modifier)
             rolls = np.append(rolls, rollsAdd)
             charName = [charName for _, charName in sorted(zip(rolls, charName), reverse=True)]
             rolls = sorted(rolls, reverse=True)
