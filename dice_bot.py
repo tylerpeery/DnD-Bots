@@ -6,6 +6,8 @@ from discord.ext import commands
 import asyncio
 import random
 import datetime
+import time
+import matplotlib.pyplot as plt; plt.rcdefaults()
 
 Client = discord.Client()
 bot_prefix= "!"
@@ -36,9 +38,9 @@ async def on_ready():
         return None
     generalChannel = get_channel(client.get_all_channels(), 'general')
 
-    if datetime.datetime.today().weekday() == 2:
-        await client.send_file(generalChannel, "imgs\gamenight.png")
-        await client.send_message(generalChannel, 'It\'s game night baby!')
+    # if datetime.datetime.today().weekday() == 2:
+    #     await client.send_file(generalChannel, "imgs\gamenight.png")
+    #     await client.send_message(generalChannel, 'It\'s game night baby!')
 
 
 @client.event
@@ -74,8 +76,39 @@ async def on_message(message):
             await client.send_message(message.channel, 'You rolled {}, totalling **{}** with your +{} modifier.'.format(
                 ', '.join(map(str, rolls)), totalRoll, modifier))
         else:
-            await client.send_message(message.channel, 'You rolled {}, totalling {} with your {} modifier.'.format(
+            await client.send_message(message.channel, 'You rolled {}, totalling **{}** with your {} modifier.'.format(
                 ', '.join(map(str, rolls)), totalRoll, modifier))
+
+    if message.content.startswith('!skill '):  # !skill modifier skillname, output that w/ player name
+        info = message.content[7:]
+        numArgs = info.count(' ') + 1
+        if numArgs == 1:
+            modifier, skill = 0, info
+        elif numArgs == 2:
+            modifier, skill = info.split(' ')
+        else:
+            await client.send_message(message.channel, 'Input should be !skill modifier skillname or !skill skillname')
+            return
+        roll = np.random.randint(1, 20+1, 1)
+        totalRoll = roll+int(modifier)
+        who = [message.author.display_name]
+        await client.delete_message(message) # DELETE PREVIOUS INPUT
+        await client.send_message(message.channel, '{} rolled {}, totalling **{} {}** with a {} modifier'.format(
+            who[0], roll[0], totalRoll[0], skill, modifier))
+
+    # modifier = 5
+    # allRolls = np.zeros((19,), dtype=np.int)
+    # rollRange = np.arange(2 + int(modifier), 21 + int(modifier), dtype=np.int)
+    # for x in range(0, 100000):
+    #     roll = np.sum(np.random.randint(0, 10, 2)) + int(modifier)
+    #     allRolls[roll - int(modifier)] += 1
+    #     # plt.pause(0.0001)
+    # plt.bar(rollRange, allRolls, align='center', alpha=0.5)
+    # plt.xticks(rollRange)
+    # plt.ylabel('Total Rolls')
+    # plt.title('Ross Chart')
+    # plt.draw()
+    # plt.show()
 
     if message.content.startswith('!char'):
         attributes = np.zeros(6, int)
