@@ -65,19 +65,15 @@ async def on_message(message):
             modifier = 0
         rolls = np.random.randint(1, int(whatSize)+1, int(howMany))
         totalRoll = np.sum(rolls)+int(modifier)
+        who = [message.author.display_name]
         print(rolls)
-        if int(modifier) == 0:
-            if int(howMany) == 1:
-                await client.send_message(message.channel, 'You rolled **{}**.'.format(rolls[0]))
-            else:
-                await client.send_message(message.channel, 'You rolled {}, totalling **{}**.'.format(', '.join(
-                    map(str, rolls)), totalRoll))
-        elif int(modifier) > 0:
-            await client.send_message(message.channel, 'You rolled {}, totalling **{}** with your +{} modifier.'.format(
-                ', '.join(map(str, rolls)), totalRoll, modifier))
+        await client.delete_message(message) # DELETE USER INPUT
+        if int(modifier) > 0:
+            await client.send_message(message.channel, '{} rolled {}d{}+{} and got {}, totalling **{}**'.format(
+                who[0], howMany, whatSize, modifier, ', '.join(map(str, rolls)), totalRoll))
         else:
-            await client.send_message(message.channel, 'You rolled {}, totalling **{}** with your {} modifier.'.format(
-                ', '.join(map(str, rolls)), totalRoll, modifier))
+            await client.send_message(message.channel, '{} rolled {}d{}{} and got {}, totalling **{}**'.format(
+                who[0], howMany, whatSize, modifier, ', '.join(map(str, rolls)), totalRoll))
 
     if message.content.startswith('!skill '):  # !skill modifier skillname, output that w/ player name
         info = message.content[7:]
