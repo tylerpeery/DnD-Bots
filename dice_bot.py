@@ -68,7 +68,7 @@ async def on_message(message):
         who = [message.author.display_name]
         print(rolls)
         await client.delete_message(message) # DELETE USER INPUT
-        if int(modifier) > 0:
+        if int(modifier) >= 0:
             await client.send_message(message.channel, '{} rolled {}d{}+{} and got {}, totalling **{}**'.format(
                 who[0], howMany, whatSize, modifier, ', '.join(map(str, rolls)), totalRoll))
         else:
@@ -89,8 +89,12 @@ async def on_message(message):
         totalRoll = roll+int(modifier)
         who = [message.author.display_name]
         await client.delete_message(message) # DELETE PREVIOUS INPUT
-        await client.send_message(message.channel, '{} rolled {}, totalling **{} {}** with a {} modifier'.format(
-            who[0], roll[0], totalRoll[0], skill, modifier))
+        if int(modifier) >= 0:
+            await client.send_message(message.channel, '{} rolled {}, totalling **{} {}** with a +{} modifier'.format(
+                who[0], roll[0], totalRoll[0], skill, modifier))
+        else:
+            await client.send_message(message.channel, '{} rolled {}, totalling **{} {}** with a {} modifier'.format(
+                who[0], roll[0], totalRoll[0], skill, modifier))
 
     # modifier = 5
     # allRolls = np.zeros((19,), dtype=np.int)
