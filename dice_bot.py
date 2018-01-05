@@ -38,9 +38,9 @@ async def on_ready():
         return None
     generalChannel = get_channel(client.get_all_channels(), 'general')
 
-    # if datetime.datetime.today().weekday() == 2:
-    #     await client.send_file(generalChannel, "imgs\gamenight.png")
-    #     await client.send_message(generalChannel, 'It\'s game night baby!')
+    if datetime.datetime.today().weekday() == 2:
+        await client.send_file(generalChannel, "imgs\gamenight.png")
+        await client.send_message(generalChannel, 'It\'s game night baby!')
 
 
 @client.event
