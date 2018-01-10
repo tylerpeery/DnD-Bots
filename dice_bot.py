@@ -39,7 +39,9 @@ async def on_ready():
     generalChannel = get_channel(client.get_all_channels(), 'general')
 
     if datetime.datetime.today().weekday() == 2:
-        await client.send_file(generalChannel, "imgs\gamenight.png")
+        img_call = np.random.randint(1, 7, 1)
+        filename = "imgs\gamenight" + str(img_call) + ".png"
+        await client.send_file(generalChannel, filename)
         await client.send_message(generalChannel, 'It\'s game night baby!')
 
 
