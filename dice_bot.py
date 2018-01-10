@@ -618,7 +618,7 @@ async def on_message(message):
         await client.send_message(message.channel, 'Thank you, {}; that is very kind of you to say.'.format(charName[0]))
 
     if message.content.startswith('!help'):
-        print(
+        help_text = (
             'Dice Bot Commands: \r \r \
             `!roll nds+m`:  roll n s-sided dice with +m modifier \r \
             `!init m`:  roll initiative with m modifier for yourself \r \
@@ -630,6 +630,7 @@ async def on_message(message):
             `!loot CR (n)`:  roll for n (default 1) individual treasures of given CR (up to 10) \r \
             `!hoard CR (n)`:  roll for n (default 1) hoard treasures of given CR (up to 10) \r \
             `!skill mod skill name` or `!skill skill name mod`: roll a d20+mod for given skill name')
+        await client.send_message(message.channel, help_text)
 
     if message.content.startswith('!logout'):
         """Logs the bot out of Discord."""
