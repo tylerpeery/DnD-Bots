@@ -617,6 +617,20 @@ async def on_message(message):
         charName = [message.author.display_name]
         await client.send_message(message.channel, 'Thank you, {}; that is very kind of you to say.'.format(charName[0]))
 
+    if message.content.startswith('!help'):
+        print(
+            'Dice Bot Commands: \r \r \
+            `!roll nds+m`:  roll n s-sided dice with +m modifier \r \
+            `!init m`:  roll initiative with m modifier for yourself \r \
+            `!init num mod monster`:  roll num initiative rolls all with mod modifier for monster_name \r \
+            `!init set Roll Name`:  set Name\'s initiative roll to Roll (doesn\'t edit, just adds new entry) \r \
+            `!init start`:  clear history and start a new initiative roll \r \
+            `!hit`:  get random flavor text for a hit \r \
+            `!char`: generate stat attribute rolls by 4d6 minus ignoring roll \r \
+            `!loot CR (n)`:  roll for n (default 1) individual treasures of given CR (up to 10) \r \
+            `!hoard CR (n)`:  roll for n (default 1) hoard treasures of given CR (up to 10) \r \
+            `!skill mod skill name` or `!skill skill name mod`: roll a d20+mod for given skill name')
+
     if message.content.startswith('!logout'):
         """Logs the bot out of Discord."""
         print('Logout command invoked. Shutting down.')
