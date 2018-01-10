@@ -40,7 +40,7 @@ async def on_ready():
 
     if datetime.datetime.today().weekday() == 2:
         img_call = np.random.randint(1, 7, 1)
-        filename = "imgs\gamenight" + str(img_call) + ".png"
+        filename = "imgs\gamenight" + str(img_call[0]) + ".png"
         await client.send_file(generalChannel, filename)
         await client.send_message(generalChannel, 'It\'s game night baby!')
 
@@ -82,11 +82,20 @@ async def on_message(message):
         numArgs = info.count(' ') + 1
         if numArgs == 1:
             modifier, skill = 0, info
-        elif numArgs == 2:
-            modifier, skill = info.split(' ')
         else:
-            await client.send_message(message.channel, 'Input should be !skill modifier skillname or !skill skillname')
-            return
+            a = info.split(' ')
+            skill = ''
+            for x in range(0, len(a)):
+                try:
+                    int(a[x])
+                    modifier = a[x]
+                except ValueError:
+                    skill = skill + a[x] + ' '
+            try:
+                modifier
+            except NameError:
+                modifier = 0
+            skill = skill[:-1]
         roll = np.random.randint(1, 20+1, 1)
         totalRoll = roll+int(modifier)
         who = [message.author.display_name]
