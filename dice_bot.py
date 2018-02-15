@@ -38,7 +38,7 @@ async def on_ready():
         return None
     generalChannel = get_channel(client.get_all_channels(), 'general')
 
-    if datetime.datetime.today().weekday() == 2:
+    if datetime.datetime.today().weekday() == 3:
         img_call = np.random.randint(1, 7, 1)
         filename = "imgs\gamenight" + str(img_call[0]) + ".png"
         await client.send_file(generalChannel, filename)
@@ -406,6 +406,104 @@ async def on_message(message):
                     magicText = 'H5'
                     gemsArtText = '5250'
 
+            elif int(level) <= 16:
+                coins['GP'] += np.sum(np.random.randint(1, 7, 4)) * 1000
+                coins['PP'] += np.sum(np.random.randint(1, 7, 5)) * 100
+                if roll <= 3:
+                    print("nothing")  # just take up a line, nothing happens
+                elif roll <= 6:
+                    gemsArtText = '11250'
+                elif roll <= 9:
+                    gemsArtText = '11750'
+                elif roll <= 12:
+                    gemsArtText = '11500'
+                elif roll <= 15:
+                    gemsArtText = '111000'
+                elif roll <= 19:
+                    magicText = 'AB11'
+                    gemsArtText = '11250'
+                elif roll <= 23:
+                    magicText = 'AB11'
+                    gemsArtText = '11750'
+                elif roll <= 26:
+                    magicText = 'AB11'
+                    gemsArtText = '11500'
+                elif roll <= 29:
+                    magicText = 'AB11'
+                    gemsArtText = '111000'
+                elif roll <= 35:
+                    magicText = 'C11'
+                    gemsArtText = '11250'
+                elif roll <= 40:
+                    magicText = 'C11'
+                    gemsArtText = '11750'
+                elif roll <= 45:
+                    magicText = 'C11'
+                    gemsArtText = '11500'
+                elif roll <= 50:
+                    magicText = 'C11'
+                    gemsArtText = '111000'
+                elif roll <= 54:
+                    magicText = 'D11'
+                    gemsArtText = '11250'
+                elif roll <= 58:
+                    magicText = 'D11'
+                    gemsArtText = '11750'
+                elif roll <= 62:
+                    magicText = 'D11'
+                    gemsArtText = '11500'
+                elif roll <= 66:
+                    magicText = 'D11'
+                    gemsArtText = '111000'
+                elif roll <= 68:
+                    magicText = 'E11'
+                    gemsArtText = '11250'
+                elif roll <= 70:
+                    magicText = 'E11'
+                    gemsArtText = '11750'
+                elif roll <= 72:
+                    magicText = 'E11'
+                    gemsArtText = '11500'
+                elif roll <= 74:
+                    magicText = 'E11'
+                    gemsArtText = '111000'
+                elif roll <= 76:
+                    magicText = 'FG11'
+                    gemsArtText = '11250'
+                elif roll <= 78:
+                    magicText = 'FG11'
+                    gemsArtText = '11750'
+                elif roll <= 80:
+                    magicText = 'FG11'
+                    gemsArtText = '11500'
+                elif roll <= 82:
+                    magicText = 'FG11'
+                    gemsArtText = '111000'
+                elif roll <= 85:
+                    magicText = 'H11'
+                    gemsArtText = '11250'
+                elif roll <= 88:
+                    magicText = 'H11'
+                    gemsArtText = '11750'
+                elif roll <= 90:
+                    magicText = 'H11'
+                    gemsArtText = '11500'
+                elif roll <= 92:
+                    magicText = 'H11'
+                    gemsArtText = '111000'
+                elif roll <= 94:
+                    magicText = 'I11'
+                    gemsArtText = '11250'
+                elif roll <= 96:
+                    magicText = 'I11'
+                    gemsArtText = '11750'
+                elif roll <= 98:
+                    magicText = 'I11'
+                    gemsArtText = '11500'
+                else:  # 99-100
+                    magicText = 'I11'
+                    gemsArtText = '111000'
+
         #  Where to roll for gems
         try:
             gemsArtText
@@ -433,6 +531,18 @@ async def on_message(message):
             elif gemsArtText == '5250':
                 gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
                 num, i, gstart = '250 GP ART OBJECTS', 0, 0  # i to count lines
+            elif gemsArtText == '11250':
+                gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                num, i, gstart = '250 GP ART OBJECTS', 0, 0  # i to count lines
+            elif gemsArtText == '11750':
+                gemsArtRoll = np.sum(np.random.randint(1, 5, 2))
+                num, i, gstart = '750 GP ART OBJECTS', 0, 0  # i to count lines
+            elif gemsArtText == '11500':
+                gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
+                num, i, gstart = '500 GP GEMSTONES', 0, 0  # i to count lines
+            elif gemsArtText == '111000':
+                gemsArtRoll = np.sum(np.random.randint(1, 7, 3))
+                num, i, gstart = '1,000 GP GEMSTONES', 0, 0  # i to count lines
 
             with open("Art_Gems_Tables") as search:
                 for line in search:
@@ -485,6 +595,32 @@ async def on_message(message):
             elif magicText == 'H5':
                 magicRoll = np.random.randint(1, 2, 1)
                 num, i, mstart = 'MAGIC ITEM TABLE H', 0, 0  # i to count lines
+            elif magicText == 'AB11':
+                magicRoll = np.random.randint(1, 5, 1)
+                magicRoll2 = np.random.randint(1, 7, 1)
+                num, i, mstart = 'MAGIC ITEM TABLE A', 0, 0  # i to count lines
+                num2, i2, mstart2 = 'MAGIC ITEM TABLE B', 0, 0  # i to count lines
+            elif magicText == 'C11':
+                magicRoll = np.random.randint(1, 7, 1)
+                num, i, mstart = 'MAGIC ITEM TABLE C', 0, 0  # i to count lines
+            elif magicText == 'D11':
+                magicRoll = np.random.randint(1, 5, 1)
+                num, i, mstart = 'MAGIC ITEM TABLE D', 0, 0  # i to count lines
+            elif magicText == 'E11':
+                magicRoll = np.random.randint(1, 2, 1)
+                num, i, mstart = 'MAGIC ITEM TABLE E', 0, 0  # i to count lines
+            elif magicText == 'FG11':
+                magicRoll = np.random.randint(1, 2, 1)
+                magicRoll2 = np.random.randint(1, 5, 1)
+                num, i, mstart = 'MAGIC ITEM TABLE F', 0, 0  # i to count lines
+                num2, i2, mstart2 = 'MAGIC ITEM TABLE G', 0, 0  # i to count lines
+            elif magicText == 'H11':
+                magicRoll = np.random.randint(1, 5, 1)
+                num, i, mstart = 'MAGIC ITEM TABLE H', 0, 0  # i to count lines
+            elif magicText == 'I11':
+                magicRoll = np.random.randint(1, 2, 1)
+                num, i, mstart = 'MAGIC ITEM TABLE I', 0, 0  # i to count lines
+
             with open("Magic_Item_Tables") as search:
                 for line in search:
                     if mstart > 0 and line == '\n':
@@ -494,32 +630,19 @@ async def on_message(message):
                     line = line.rstrip()  # remove '\n' at end of line
                     if num == line: mstart = i
 
-        #  Roll for gems/art
-        try:
-            gemsArtText
-        except NameError:  # if magicText doesn't exist yet
-            print("nothing")
-        else:
-            f = open('Art_Gems_Tables', 'r')
-            lines = f.readlines()[int(gstart+1):int(gend)]
-            f.close()
-            dieRange, gemsArt, gemsArtn = [0]*len(lines), [0]*len(lines), np.zeros(len(lines), int)
-            if (gemsArtText == '010' or gemsArtText == '050' or
-                gemsArtText == '550'): maxd = 12
-            elif (gemsArtText == '025' or gemsArtText == '5100' or
-                gemsArtText == '525' or gemsArtText == '5250'): maxd = 10
-            for x in range(0, len(lines)):  # get lines of text
-                lines[x] = lines[x].rstrip()
-                dieRange[x], gemsArt[x] = lines[x].split(' ', 1)
-            for x in range(0, int(gemsArtRoll)):
-                dx = np.random.randint(1, maxd+1, 1)
-                for n in range(0, len(dieRange)):
-                    if '-' in dieRange[n]:
-                        first, second = dieRange[n].split('-')
-                        if dx >= int(first) and dx <= int(second):
-                            gemsArtn[n] += 1
-                    elif dx == int(dieRange[n]):
-                        gemsArtn[n] += 1
+            try:
+                magicRoll2
+            except NameError:  # if magicRoll2 doesn't exist yet
+                print("no 2nd magic item roll")
+            else:
+                with open("Magic_Item_Tables") as search2:
+                    for line2 in search2:
+                        if mstart2 > 0 and line2 == '\n':
+                            mend2 = i2
+                            break
+                        i2 += 1
+                        line2 = line2.rstrip()  # remove '\n' at end of line
+                        if num2 == line2: mstart2 = i2
 
         #  Roll for magic items
         try:
@@ -544,8 +667,61 @@ async def on_message(message):
                             magicItemn[n] += 1
                     elif d100 == int(dieRange[n]):
                         magicItemn[n] += 1
+        try:
+            magicRoll2
+        except NameError: # if magicRoll2 doesn't exist yet
+            print("no 2nd magic item roll")
+        else:
+            f = open('Magic_Item_Tables', 'r')
+            lines2 = f.readlines()[int(mstart2 + 1):int(mend2)]
+            f.close()
+            dieRange2, magicItem2, magicItemn2 = [0] * len(lines2), [0] * len(lines2), np.zeros(len(lines2),
+                                                                                           int)
+            for x in range(0, len(lines2)):
+                lines2[x] = lines2[x].rstrip()
+                dieRange2[x], magicItem2[x] = lines2[x].split(' ', 1)
+            for x in range(0, int(magicRoll2)):
+                d1002 = np.random.randint(1, 101, 1)
+                for n in range(0, len(dieRange2)):
+                    if '-' in dieRange2[n]:
+                        first2, second2 = dieRange2[n].split('-')
+                        if d1002 >= int(first2) and d1002 <= int(second2):
+                            magicItemn2[n] += 1
+                    elif d1002 == int(dieRange2[n]):
+                        magicItemn2[n] += 1
 
-        bigPrint = "BUM BA DUH BUUUH!: \r"
+        #  Roll for gems/art
+        try:
+            gemsArtText
+        except NameError:  # if magicText doesn't exist yet
+            print("nothing")
+        else:
+            f = open('Art_Gems_Tables', 'r')
+            lines = f.readlines()[int(gstart+1):int(gend)]
+            f.close()
+            dieRange, gemsArt, gemsArtn = [0]*len(lines), [0]*len(lines), np.zeros(len(lines), int)
+            if (gemsArtText == '010' or gemsArtText == '050' or
+                gemsArtText == '550'): maxd = 12
+            elif (gemsArtText == '025' or gemsArtText == '5100' or
+                gemsArtText == '525' or gemsArtText == '5250' or
+                  gemsArtText == '11250' or gemsArtText == '11750'): maxd = 10
+            elif (gemsArtText == '11500'): maxd = 6
+            elif (gemsArtText == '111000'): maxd = 8
+            for x in range(0, len(lines)):  # get lines of text
+                lines[x] = lines[x].rstrip()
+                dieRange[x], gemsArt[x] = lines[x].split(' ', 1)
+            for x in range(0, int(gemsArtRoll)):
+                dx = np.random.randint(1, maxd+1, 1)
+                for n in range(0, len(dieRange)):
+                    if '-' in dieRange[n]:
+                        first, second = dieRange[n].split('-')
+                        if dx >= int(first) and dx <= int(second):
+                            gemsArtn[n] += 1
+                    elif dx == int(dieRange[n]):
+                        gemsArtn[n] += 1
+
+        bigPrint = "BUM BA DUH BUUUH!"
+        bigPrint += ' Your **{}** has earned: \r'.format(roll[0])
         if coins['CP'] > 0:
             bigPrint += '{} CP  '.format(coins['CP'])
         if coins['SP'] > 0:
@@ -581,6 +757,19 @@ async def on_message(message):
                 for x in range(0, len(magicItem)):
                     if magicItemn[x] > 0:
                         bigPrint += '{} {}(s)  '.format(magicItemn[x], magicItem[x])
+
+        try:
+            magicRoll2
+        except NameError:  # if magicText doesn't exist yet
+            print("still no 2nd magic item roll")
+        else:
+            bigPrint += '\r*And...!*'
+            if np.sum(magicItemn2) > 0:
+                bigPrint += '\r'
+                for x in range(0, len(magicItem2)):
+                    if magicItemn2[x] > 0:
+                        bigPrint += '{} {}(s)  '.format(magicItemn2[x], magicItem2[x])
+
         await client.send_file(message.channel, "imgs\hoard.png")
         await client.send_message(message.channel, bigPrint)
 
