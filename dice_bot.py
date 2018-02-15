@@ -721,7 +721,7 @@ async def on_message(message):
                         gemsArtn[n] += 1
 
         bigPrint = "BUM BA DUH BUUUH!"
-        bigPrint += ' Your **{}** has earned: \r'.format(roll[0])
+        bigPrint += ' Your roll of **{}** has earned: \r'.format(roll[0])
         if coins['CP'] > 0:
             bigPrint += '{} CP  '.format(coins['CP'])
         if coins['SP'] > 0:
